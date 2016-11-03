@@ -1,6 +1,8 @@
 import React from 'react';
 import HomeComponent from '../components/HomeComponent';
 
+import {multiSearch} from '../helpers/helpers'
+
 const HomeContainer = React.createClass({
 	getInitialState(){
 		return {
@@ -14,6 +16,13 @@ const HomeContainer = React.createClass({
 
 		console.log(event.target)
 		console.log($(event.target).find("input:text").val())
+
+		let movieTitle = $(event.target).find("input:text").val();
+
+		multiSearch(movieTitle)
+			.then(function(data){
+				console.log(data)
+			})
 	},
 	render(){
 		console.log(this.state);
