@@ -9,12 +9,19 @@ const HomeContainer = React.createClass({
 			yourName: "Jason"
 		}
 	},
+	handleUserSubmit(event){
+		event.preventDefault();
+
+		console.log(event.target)
+		console.log($(event.target).find("input:text").val())
+	},
 	render(){
 		console.log(this.state);
 		return(
 			<HomeComponent 
 				data = {this.state}
-				name = {this.state.yourName}/>
+				name = {this.state.yourName}
+				onUserSubmit = {this.handleUserSubmit}/>
 		)
 	}
 })

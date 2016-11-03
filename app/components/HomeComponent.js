@@ -12,7 +12,9 @@ function HomeComponent(props){
 		<div className="container" style={styles.centering}>
 			<h1>This Is Your Movie App!</h1>
 			<div className="row">
-		    <form className="col s10 offset-s2 m4 offset-m4">
+		    <form 
+		    	className="col s10 offset-s2 m4 offset-m4"
+		    	onSubmit = {props.onUserSubmit}>
 		    	<input 
 		    		placeholder="Enter Movie or TV Show Title" 
 		    		type="text"
