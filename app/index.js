@@ -1,23 +1,8 @@
 import React from 'react';
 import {render} from 'react-dom';
 
-function HomeComponent(props){
-	return(
-		<div>
-			<h1>Hello World!!!</h1>
-			<h3>You're using REACT!!!!</h3>
-		</div>
-	)
-}
+import HomeContainer from './containers/HomeContainer';
 
-const HomeContainer = React.createClass({
-	render(){
-		return(
-			<HomeComponent/>
-		)
-		
-	}
-})
 
 render(
 	<HomeContainer/>,
