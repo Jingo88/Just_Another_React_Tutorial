@@ -25,7 +25,7 @@ function HomeComponent(props){
 		    </form>
 		  </div>
 
-		  <h2>The name from our props is {props.name}</h2>
+		  {props.search === true ? <h1>Show the movies</h1> : <h1> Waiting to see some shit</h1>}
 		</div>
 	)
 }

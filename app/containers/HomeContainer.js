@@ -9,7 +9,7 @@ const HomeContainer = React.createClass({
 			loading: false,
 			search: false,
 			movieTitle: "",
-			yourName: "Jason"
+			moviesFound: []
 		}
 	},
 	handleUserSubmit(event){
@@ -20,9 +20,26 @@ const HomeContainer = React.createClass({
 
 		let movieTitle = $(event.target).find("input:text").val();
 
+		// multiSearch(movieTitle)
+		// 	.then(function(data){
+		// 		console.log(data)
+				
+		// 		this.setState({
+		// 			search : true,
+		// 			movieTitle : movieTitle,
+		// 			moviesFound : data
+		// 		})
+		// 	}.bind(this))
+
 		multiSearch(movieTitle)
-			.then(function(data){
+			.then((data) => {
 				console.log(data)
+				
+				this.setState({
+					search : true,
+					movieTitle : movieTitle,
+					moviesFound : data
+				})
 			})
 	},
 	render(){
