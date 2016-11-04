@@ -108,6 +108,47 @@ render(
 
 ### 02 Separation of Concerns
 
+* Now in this branch we're going to separate everything out. 
+* We learned about Containers and Components but now we're going to give them their own folders. 
+* In a larger app you might even break these up further depending on now many components you'll have
+* Since these are all new files we'll have to export and import them into each other
+* `HomeContainer`
+
+```
+import React from 'react';
+import HomeComponent from '../components/HomeComponent';
+
+export default HomeContainer;
+```
+* Import the HomeComponent for use
+* Export the const object so the `index.js` file can use it
+* `HomeComponent`
+
+```
+module.exports = HomeComponent;
+```
+* We are exporting our `Stateless Presentational Component` so the HomeContainer can use it
+* `index.js` Now Our Index.js File looks like this!!!
+
+```
+import React from 'react';
+import {render} from 'react-dom';
+
+import HomeContainer from './containers/HomeContainer';
+
+
+render(
+	<HomeContainer/>,
+	document.getElementById('app')
+)
+```
+
+##### Misc.
+
+* Now you can start seeing the organizational piece. 
+* Utilizing components in this manner lets us keep them small and also makes them reusable
+* 
+
 
 
 
