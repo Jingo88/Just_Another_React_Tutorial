@@ -5,7 +5,7 @@ function HomeComponent(props){
 	return(
 		<div>
 			<h1>Hello World!!!</h1>
-			<h3>You're using REACT!!!!</h3>
+			<h3>Youre using REACT!!!!</h3>
 		</div>
 	)
 }
