@@ -19,7 +19,6 @@ const HomeContainer = React.createClass({
 		console.log($(event.target).find("input:text").val())
 
 		let movieTitle = $(event.target).find("input:text").val();
-
 		// multiSearch(movieTitle)
 		// 	.then(function(data){
 		// 		console.log(data)
@@ -35,7 +34,6 @@ const HomeContainer = React.createClass({
 // ES6 Arrow function binds the this object from the outer scope to where we are calling setState
 		multiSearch(movieTitle)
 			.then((data) => {
-				
 				
 				this.setState({
 					search : true,

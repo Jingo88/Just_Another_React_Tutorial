@@ -9,6 +9,7 @@ const styles = {
 }
 
 function HomeComponent(props){
+
 	return(
 		<div className="container" style={styles.centering}>
 			<h1>This Is Your Movie App!</h1>
@@ -25,8 +26,11 @@ function HomeComponent(props){
 		    		hidden/>
 		    </form>
 		  </div>
-
-		  {props.data.search === true ? <MovieListComponent data = {props.data.moviesFound}/> : <h1> Waiting to see some shit</h1>}
+		  
+		  {props.data.search === true ? 
+		  	<MovieListComponent data = {props.data.moviesFound}/> 
+		  	: 
+		  	<h1> Waiting to see some shit</h1>}
 		</div>
 	)
 }
