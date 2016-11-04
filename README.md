@@ -147,9 +147,69 @@ render(
 
 * Now you can start seeing the organizational piece. 
 * Utilizing components in this manner lets us keep them small and also makes them reusable
-* 
 
 
+### 03 State and Props
+
+* If we keep our logic in one place and the styling in another place how do the two talk to each other?
+* `State and Props` - These are the meat and potatoes of React, or if you're vegetarian, lettuce and tomatoes. 
+* Your `State` is similar to props but acts as a private object that is only accessible by that component.
+
+##### HomeContainer
+
+* Inside our container we will use a built in function called `getInitialState`
+* `getInitialState()` 
+	* ES6 for function getInitialState()
+	* Always takes a return
+	* Create a JavaScript Object
+	* This object is immutable, we'll cover how to change these later
+	* You can pass this whole object or just specific parts to the component
+* `handleUserSubmit()` 
+	* This is our own function built to handle an event
+	* This event listener will be passed down to the component
+* Now when we render our `HomeComponent` we'll use JSX syntax to pass in the props. 
+* Feel free to check out the console.log for "this.state"
+
+##### HomeComponent
+
+* Inside our HomeComponent, along with the styling, we can use the props that were passed in to show on the page.
+
+```
+<h2>The name from our props is {props.name}</h2>
+```
+* props.name was accessible because inside our HomeContainer we rendered the HomeComponent like this
+
+```
+	render(){
+		console.log(this.state);
+		return(
+			<HomeComponent 
+				data = {this.state}
+				name = {this.state.yourName}
+				onUserSubmit = {this.handleUserSubmit}/>
+		)
+	}
+```
+
+##### Misc.
+
+* When creating and passing functions that will handle events best practice is to use `"handle"` when creating the event listener and `"on"` when passing it as a prop
+* `event.preventDefault()` is used to prevent the form from reloading
+
+### 04 Ajax and Axios
+
+* Alright so this app isn't going to just stop at console logging
+* We can grab the user input but lets start sending it to the OMDB API
+* Again, we want to organize our code into small files with a specific kind of structure
+* For these AJAX calls we're going to use a node module called `Axios`
+* These calls will be in the `helpers` file
+* We're going to import and export them the same as we do with everything else
+
+##### Misc.
+
+* In our container you'll see `let movieTitle` inside the handleUserSubmit.
+	* let is another way to declare a variable instead of `var`
+	* `let` allows us to create variables that will not get `hoisted`
 
 
 
