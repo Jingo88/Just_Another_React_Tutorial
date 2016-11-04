@@ -1,5 +1,7 @@
 import React from 'react';
 
+import MovieDetailsContainer from '../containers/MovieDetailsContainer'
+
 var styles = {
 	posterImage : {
 		width: '100%',
@@ -42,6 +44,7 @@ function MovieUI(props){
 					<a href="#">Share</a>
 				</div>
 				
+				<MovieDetailsContainer data={props.data} />
 			</div>
 		</div>
 	)
