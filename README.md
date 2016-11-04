@@ -8,6 +8,8 @@
 * Utilizes components
 * Virtual DOM efficiency
 
+---
+
 ### What We're Building
 
 * In this tutorial we'll be building a web app that will search for movies
@@ -15,17 +17,7 @@
 * Clone this repo onto your computer
 * Then grab all the dependencies using:
 
-```
-npm install
-```
-* This command is a node command that will download all the node modules listed in the `package.json` file
-* If you don't have npm then... you should probably download yourself npm
-* Now let's run the server
-
-```
-npm start
-```
-* Now open up your browser and visit `localhost:8080`
+---
 
 ### Other Companion Technologies
 
@@ -41,6 +33,29 @@ npm start
 Node.js® is a JavaScript runtime built on Chrome's V8 JavaScript engine. Node.js uses an event-driven, non-blocking I/O model that makes it lightweight and efficient. Node.js' package ecosystem, npm, is the largest ecosystem of open source libraries in the world.
 ```
 * npm - the package manager for node modules
+
+---
+
+### 00 The Master Branch
+
+```
+npm install
+```
+* This command is a node command that will download all the node modules listed in the `package.json` file
+* If you don't have npm then... you should probably download yourself npm
+* Now let's run the server
+
+```
+npm start
+```
+* Now open up your browser and visit `localhost:8080`
+* This is our end goal. Or as far as this tutorial will take you. Hopefully you can rebuild this into your own apps and incorporate newer concepts. I'll suggests some later on. 
+
+### 01 The Set Up
+
+* 
+
+
 
 
 ##### Things to write about
