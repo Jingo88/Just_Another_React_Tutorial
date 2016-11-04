@@ -58,7 +58,56 @@ npm start
 * `package.json` - again this is used to tell people your dependencies for this app. We used it to install the correct node modules
 * `app/.babelrc` - To use babel to transform our items we have to pass in "react" and "es2015"
 * `index.html` - has some cdns for jquery, materialize. Also has only a single element with an id of `app`. We're going to target this in our JS file
-* `index.js` - 
+
+##### `index.js` - The Important Stuff!
+
+```
+import React from 'react';
+import {render} from 'react-dom';
+
+function HomeComponent(props){
+	return(
+		<div>
+			<h1>Hello World!!!</h1>
+			<h3>You're using REACT!!!!</h3>
+		</div>
+	)
+}
+const HomeContainer = React.createClass({
+	render(){
+		return(
+			<HomeComponent/>
+		)
+		
+	}
+})
+render(
+	<HomeContainer/>,
+	document.getElementById('app')
+)
+```
+* the imports are ES6 syntax. We are grabbing what we want from the node modules we installed earlier
+
+##### Containers vs Components
+
+* Many tutorials will use some of the following technologies
+	* `Containers vs Components`
+	* `Smart and Dumb Components`
+	* `Containers vs Stateless Presentational Components`
+* We'll stick with the first one
+* Our Containers will hold all the `state` and the `logic` for that piece of the Virtual DOM
+* Our Components will be logicless and stateless. Their only goal is to present the element to the page. You can put your styling here. 
+
+##### Rest of the code
+
+* `const` - an ES6 syntax that we are using to declare an object instead of using `var`. Const also tells us that this object is `immutable`
+* `render(){}` - ES6 syntax. This just means `function render(){}`
+* `<HomeComponent/>` - JSX syntax inside of the `return / render` of Container
+* All const/containers must have a render function with a return statement, returning an object that represents the virtual DOM
+* The last render is coming from the `react-dom` node module and we are passing it all of our objects to render to our element with an id of `app`
+
+
+
 
 
 
