@@ -1,10 +1,9 @@
 import React from 'react';
 import {render} from 'react-dom';
 
-import router from './config/router'
-
+import HomeContainer from './containers/HomeContainer'
 
 render(
-	router,
+	<HomeContainer/>,
 	document.getElementById('app')
 )

@@ -6,7 +6,8 @@ import {multiSearch} from '../helpers/helpers'
 const HomeContainer = React.createClass({
 	getInitialState(){
 		return {
-			search: true,
+			loading: false,
+			search: false,
 			movieTitle: "",
 			yourName: "Jason"
 		}
