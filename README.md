@@ -106,6 +106,8 @@ render(
 * All const/containers must have a render function with a return statement, returning an object that represents the virtual DOM
 * The last render is coming from the `react-dom` node module and we are passing it all of our objects to render to our element with an id of `app`
 
+### 02 Separation of Concerns
+
 
 
 
