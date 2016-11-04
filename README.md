@@ -1,13 +1,47 @@
 # Just Another React Tutorial
 
-##### Other Companion Technologies
+### What is React?
 
-* Webpack
-* ES6
-* JSX
-* Axios
-* NPM
-* Node
+* React is a JavaScript Library created by Facebook
+* Write organized code
+* Write code quickly
+* Utilizes components
+* Virtual DOM efficiency
+
+### What We're Building
+
+* In this tutorial we'll be building a web app that will search for movies
+* We'll be using the OMDB API
+* Clone this repo onto your computer
+* Then grab all the dependencies using:
+
+```
+npm install
+```
+* This command is a node command that will download all the node modules listed in the `package.json` file
+* If you don't have npm then... you should probably download yourself npm
+* Now let's run the server
+
+```
+npm start
+```
+* Now open up your browser and visit `localhost:8080`
+
+### Other Companion Technologies
+
+* OMDB API - I picked this because it is a free api that does not require a key. However, IMDB does not allow people to take their images so keep that in mind if you are trying to utilize OMDB for hosting an actual movie app
+* Webpack - We use this to bundle our modules. When you run `npm start` you are actually starting the "webpack-dev-server" which will take care of everything for us. If you were to build your own full stack application you will need to build a `webpack.config.js` file and hook it up to your server. 
+* ES6 - The newest version of JavaScript. Also known as `es2015`
+* JSX - A preprocessor that allows us to write XML syntax inside of our JavaScript files. Since we are using a Virtual DOM JSX makes it look as close to writing HTML as possible.
+* Axios - A promise based http client. Make XMLHttpRequests.
+* Node - A runtime environment for JavaScript. 
+	* From [https://nodejs.org/en/](https://nodejs.org/en/)
+
+```
+Node.js® is a JavaScript runtime built on Chrome's V8 JavaScript engine. Node.js uses an event-driven, non-blocking I/O model that makes it lightweight and efficient. Node.js' package ecosystem, npm, is the largest ecosystem of open source libraries in the world.
+```
+* npm - the package manager for node modules
+
 
 ##### Things to write about
 
