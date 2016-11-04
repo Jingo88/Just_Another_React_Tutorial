@@ -31,9 +31,11 @@ const HomeContainer = React.createClass({
 		// 		})
 		// 	}.bind(this))
 
+
+// ES6 Arrow function binds the this object from the outer scope to where we are calling setState
 		multiSearch(movieTitle)
 			.then((data) => {
-				console.log(data)
+				
 				
 				this.setState({
 					search : true,
@@ -43,11 +45,10 @@ const HomeContainer = React.createClass({
 			})
 	},
 	render(){
-		console.log(this.state);
+		
 		return(
 			<HomeComponent 
 				data = {this.state}
-				name = {this.state.yourName}
 				onUserSubmit = {this.handleUserSubmit}/>
 		)
 	}
