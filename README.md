@@ -25,7 +25,8 @@
 * Webpack - We use this to bundle our modules. When you run `npm start` you are actually starting the "webpack-dev-server" which will take care of everything for us. If you were to build your own full stack application you will need to build a `webpack.config.js` file and hook it up to your server. 
 * ES6 - The newest version of JavaScript. Also known as `es2015`
 * JSX - A preprocessor that allows us to write XML syntax inside of our JavaScript files. Since we are using a Virtual DOM JSX makes it look as close to writing HTML as possible.
-* Axios - A promise based http client. Make XMLHttpRequests.
+* Axios - A promise based http client. Make XMLHttpRequests
+* Babel - Transform our ES6 and JSX to JavaScript
 * Node - A runtime environment for JavaScript. 
 	* From [https://nodejs.org/en/](https://nodejs.org/en/)
 
@@ -53,7 +54,11 @@ npm start
 
 ### 01 The Set Up
 
-* 
+* Lets run throught our files and folders
+* `package.json` - again this is used to tell people your dependencies for this app. We used it to install the correct node modules
+* `app/.babelrc` - To use babel to transform our items we have to pass in "react" and "es2015"
+* `index.html` - has some cdns for jquery, materialize. Also has only a single element with an id of `app`. We're going to target this in our JS file
+* `index.js` - 
 
 
 
