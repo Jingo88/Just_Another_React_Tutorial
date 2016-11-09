@@ -35,7 +35,7 @@ function HomeComponent(props){
 		  		data={moviesFound} 
 		  		loading={loading}/> 
 		  	: 
-		  	<h1> Waiting to see some shit</h1>
+		  	<h4>Let us help you find what are you looking for?</h4>
 		  }
 		</div>
 	)
