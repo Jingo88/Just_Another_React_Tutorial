@@ -1,6 +1,6 @@
 import React from 'react';
-
-import MovieDetailsContainer from '../containers/MovieDetailsContainer'
+import MovieDetailsContainer from '../containers/MovieDetailsContainer';
+import Loading from './LoadingComponent';
 
 var styles = {
 	posterImage : {
@@ -24,6 +24,7 @@ function MoviePoster(props){
 }
 
 function MovieUI(props){
+	console.log(props)
 	return(
 		<div className="col s12 m4">
 			<div className="card large">
@@ -53,12 +54,21 @@ function MovieUI(props){
 function MovieListComponent(props){
 	return (
 		<div className="row">
-			{props.data.map(function(movie){
-				return <MovieUI 
+			{props.loading === false ? 
+				<Loading/>
+				:
+
+				props.data.map(function(movie){
+					return <MovieUI 
 								data={movie}/>
-			})}
+				})
+			}
 		</div>
 	)
 }
+
+
+
+
 
 module.exports = MovieListComponent;

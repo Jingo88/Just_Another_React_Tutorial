@@ -12,10 +12,11 @@ var styles = {
 }
 
 function MovieDetailsComponent(props){
+	console.log(props)
 	
 	let movieInfo = props.movieInfo.data
 
-	return props.loading === true
+	return (props.loading === true
 		? <div className="card-reveal">
   			<span className="card-title center">
 	  			<div className="preloader-wrapper big active">
@@ -54,7 +55,7 @@ function MovieDetailsComponent(props){
 	  			</ul>
 	  			
 			</div>
-		
+		)
 }
 
 module.exports = MovieDetailsComponent
