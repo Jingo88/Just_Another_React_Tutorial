@@ -320,25 +320,121 @@ render(
 	}
 ```
 
-##### TAKEAWAY: Handle vs On Labeling
+##### TAKEAWAY: State vs Props | Handle vs On Labeling | Misc.
 
+* Props - This represents the data/functions that can be sent to a component. The component can use this data to populate it's JSX Virtual DOM Elements or add event listeners to the Virtual DOM Elements
+* State - An immutable object of information that represents the data for that container and what is available to be passed down to the sub components
+* To Change state use the `this.setState` function. We will see and example of this in the following branches
 * When creating and passing functions that will handle events best practice is to use `"handle"` when creating the event listener and `"on"` when passing it as a prop
 * `event.preventDefault()` is used to prevent the form from reloading
 
 ## 04 Ajax and Axios
 
+##### Recap for Event Listeners
+
 * Alright so this app isn't going to just stop at console logging
-* We can grab the user input but lets start sending it to the OMDB API
+* We can grab the user input with our `handleUserSubmit` function and passing it down as a prop called `OnUserSubmit` to our Home Component.
+* Now we have to make calls to the OMDB API
+
+##### MOAR ORGANIZATION!!! (Set Up AJAX Calls)
+
 * Again, we want to organize our code into small files with a specific kind of structure
 * For these AJAX calls we're going to use a node module called `Axios`
-* These calls will be in the `helpers` file
-* We're going to import and export them the same as we do with everything else
+* These calls will be in the `helpers` file of the `helpers` directory
+* We're going to import and export them the same way we do with our containers and components
 
-##### Misc.
+##### Inside The Helpers File
 
-* In our container you'll see `let movieTitle` inside the handleUserSubmit.
-	* let is another way to declare a variable instead of `var`
-	* `let` allows us to create variables that will not get `hoisted`
+```
+import axios from 'axios'; 
+
+var singleTitle = "http://www.omdbapi.com/?t="
+
+var multiTitle = "http://www.omdbapi.com/?s="
+
+function singleSearch(title, year){
+	let endpoint = singleTitle + title + "&y=" + year;
+
+	return axios.get(endpoint)
+		.then(function(response){
+			return response
+		})
+		.catch(function(err){
+			console.warn("Error will your Single Search Helper");
+		})	
+
+}
+
+function multiSearch(title){
+
+	let endpoint = multiTitle + title
+
+	return axios.get(endpoint)
+		.then(function(response){
+
+			return response.data.Search
+		})
+		.catch(function(err){
+			console.warn("Error with our multi search helper call" + err)
+		})
+}
+
+module.exports = {
+	singleSearch : singleSearch,
+	multiSearch : multiSearch
+}
+```
+
+* Import the Axios library
+* Set up our endpoints for the API
+* Build the function so that the proper endpoint will be combined with the users search inquiry
+* The data that comes back will be in json format
+* We will return that data to the container it is called. 
+* At the bottom of the file we export all our helper fuctions.
+
+##### HandleUserSubmit Calling Helper Functions
+
+* Make sure to import the helper functions at the top along with your other imports 
+
+```
+import {multiSearch} from '../helpers/helpers'
+```
+
+* Now lets look at the actual user submit function
+
+```
+	handleUserSubmit(event){
+		event.preventDefault();
+
+		console.log(event.target)
+		console.log($(event.target).find("input:text").val())
+
+		let movieTitle = $(event.target).find("input:text").val();
+
+		multiSearch(movieTitle)
+			.then(function(data){
+				console.log(data)
+			})
+	},
+```
+
+* We're keeping the console logs for now to make sure we have the users input
+* We're setting the user input to a variable that will be passed into the `multiSearch` helper function
+* The data that is returned from `multiSearch` will be passed in as `data` inside of the `.then` promise.
+
+## 05 Render Movies
+
+* Take a look at what we've done with the handleUserSubmit function
+* We know the `data` we get back inside `.then` is an array of objects
+* We are going to use Reacts `this.setState` function to set that data to the state of our container
+* 
+
+
+##### Extra
+
+* `this.setState` runs asynchronously
+* `this.setState` will automatically re-render the component, passing the new state down as props
+
 
 
 ## Run Forest Run! Going The Extra Mile
