@@ -424,16 +424,154 @@ import {multiSearch} from '../helpers/helpers'
 
 ## 05 Render Movies
 
+##### Update State in the Container
+
 * Take a look at what we've done with the handleUserSubmit function
 * We know the `data` we get back inside `.then` is an array of objects
-* We are going to use Reacts `this.setState` function to set that data to the state of our container
-* 
+* We are going to use Reacts `this.setState` function to set that `data` returned from our axios call to the key `moviesFound` inside our state. 
 
+```
+	handleUserSubmit(event){
+		event.preventDefault();
 
-##### Extra
+		console.log(event.target)
+		console.log($(event.target).find("input:text").val())
+
+		multiSearch(movieTitle)
+			.then((data) => {
+				
+				this.setState({
+					search : true,
+					movieTitle : movieTitle,
+					moviesFound : data
+				})
+			})
+	},
+	render(){
+		
+		return(
+			<HomeComponent 
+				data = {this.state}
+				onUserSubmit = {this.handleUserSubmit}/>
+		)
+	}
+```
+* Our render function stays the same.
+* However, since the state change the `data={this.state}` will reflect that change and pass it down as props to our `HomeComponent`
+
+##### Update our Home Component to render the movies
+
+```
+
+function HomeComponent(props){
+
+	const {moviesFound, loading, search} = props.data;
+
+	return(
+		<div className="container" style={styles.centering}>
+			<h1>This Is Your Movie App!</h1>
+			<div className="row">
+		    <form 
+		    	className="col s10 offset-s2 m4 offset-m4"
+		    	onSubmit = {props.onUserSubmit}>
+		    	<input 
+		    		placeholder="Enter Movie or TV Show Title" 
+		    		type="text"
+		    		className="validate"/>
+		    	<input 
+		    		type="submit"
+		    		hidden/>
+		    </form>
+		  </div>
+
+		  {
+		  	search === true ? 
+		  	<MovieListComponent 
+		  		data={moviesFound} 
+		  		loading={loading}/> 
+		  	: 
+		  	<h4>Let us help you find what are you looking for?</h4>
+		  }
+		</div>
+	)
+}
+
+```
+* The only thing that has changed here is the ternary operator 
+* What the hell is the ternary operator saying?
+	* Assess if props.data.search is true
+	* If it is true render the `MovieListComponent` and pass it the props of `moviesFound` (the array of movie objects)
+	* If it is false we'll render a sub header for the user to see
+
+##### MovieComponent
+
+* Lets take a look at the MovieListComponent first.
+* Inside the return function we are using `props.data.map` to loop through the array of objects.
+* It will apply the object at EACH ITERATION as props to the `MovieUI` component
+* In turn each `MovieUI` component will call the `MoviePoster` function to see if we have an image or not to show the user. 
+	* If there is an image return that in an image tage
+	* If there is not an image return an image tag with the default image
+
+```
+
+function MoviePoster(props){
+	return props.data === "N/A"
+		? <img style={styles.posterImage} className="activator" src="http://www.nyctransitforums.com/forums/fcontent/default.png" />
+		: <img style={styles.posterImage} className="activator" src={props.data} />
+}
+
+function MovieUI(props){
+	return(
+		<div className="col s12 m4">
+			<div className="card large">
+				<div className="card-image waves-effect waves-block waves-light">
+					<MoviePoster 
+						data = {props.data.Poster}/>
+				</div>
+
+				<div className="card-content">
+		      <span className="card-title activator" style={styles.mTitle}>
+		      	{props.data.Title}
+		      	<i className="material-icons right">more_vert</i>
+		      </span>
+				</div>
+
+				<div className="card-action" style={styles.details}>
+					<a href="#">Add to favorites</a>
+					<a href="#">Share</a>
+				</div>
+				
+			</div>
+		</div>
+	)
+}
+
+function MovieListComponent(props){
+	return (
+		<div className="row">
+			{props.data.map(function(movie){
+				return <MovieUI 
+								data={movie}/>
+			})}
+		</div>
+	)
+}
+
+module.exports = MovieListComponent;
+```	
+
+##### MOAR ON this.setState | ES6 Arrow Functions | Misc.
 
 * `this.setState` runs asynchronously
 * `this.setState` will automatically re-render the component, passing the new state down as props
+* Please make sure you check out the ES6 section in this markdown to understand how the arrow function is taking care of the `bind(this)` that is normally needed.
+* Why bother with a Movie Component? Can't we just stick those functions inside the same file as our Home Component?
+	* Yes it would definitely work the same if we put everything in the Home Component
+	* BUT REMEMBER, the purpose of breaking these up is to `keep our files small, our code organized, and our components reusable`
+	* If a component is getting too big think about how to break it up into smaller files. 
+* `Imperative vs Declarative programming!!!`
+	* We have to use props.data.map inside our MovieComponent return. We cannot use a for loop inside of the JSX. 
+
 
 
 
