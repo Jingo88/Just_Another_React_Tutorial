@@ -24,7 +24,6 @@ function MoviePoster(props){
 }
 
 function MovieUI(props){
-	console.log(props)
 	return(
 		<div className="col s12 m4">
 			<div className="card large">
@@ -66,9 +65,5 @@ function MovieListComponent(props){
 		</div>
 	)
 }
-
-
-
-
 
 module.exports = MovieListComponent;

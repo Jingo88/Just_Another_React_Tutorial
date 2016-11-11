@@ -603,32 +603,83 @@ module.exports = MovieListComponent;
 * Use a lifecycle method called `componentDidMount`
 	* This is a method built into react that says "Once this component is mounted run this code block"
 	* That code block being the invoking of `this.getSingleMovie` and passing in the props as the arguments
-	* We won't cover lifecycle methods in depth in this tutorial but there will be resources in the next steps section
+	* We won't cover lifecycle methods in depth in this tutorial but there are many articles/documentation on how to use them
 	
 ***These next steps should sound familiar***
 
 * `getSingleMovie` will take the title and year as arguments and send it to the helper function
 * Axios hits the OMDB API and will return back that data in JSON format
 * That data is used to update the state of our `MovieDetailsContainer`
-	
+* Now that the state has been updated we can send that data as `props` to a `MovieDetailsComponent`
 
+##### MovieDetailsComponent
+
+* Uses a ternary operator to assess if `props.loading` is true. 
+* If it is true render some loading images from `Materialize CSS`
+* If it is false take the data from `movieInfo` and populate them on the page. 
 
 
 ##### Container Vs. Component 
 
-* Wait we called a container `MovieDetailsContainer` from a component? 
-* 
+* Wait we called a container `MovieDetailsContainer` from a component `MovieListComponent`? 
+* Yes we did. Remember all of these are just JavaScript Objects
+* The reason I made details into another container/component instead of putting it all in one file is the seperation of the axios logic and the presentation of listing out all the data returned
+
+---
 
 
+## 00 Back To Master!!!
 
+* CONGRATS!!!
+* You got through all 6 branches. 
+* You may notice there is an extra component file in the master branch that is not in branch 6
+* I made a `LoadingComponent` to show as an example of something small and reusable
+* It can be imported and dropped anywhere throughout the app
+* We can use it as a default loading screen where ever the user might have to wait for data. 
+* In the example of the master branch I imported the `LoadingComponent` into the `MovieListComponent` 
+* Check out the ternary operator in the return function there
+
+```
+function MovieListComponent(props){
+	return (
+		<div className="row">
+			{props.loading === false ? 
+				<Loading/>
+				:
+
+				props.data.map(function(movie){
+					return <MovieUI 
+								data={movie}/>
+				})
+			}
+		</div>
+	)
+}
+```
+* If the movies are rendering too fast and you want to see the loading sign in action feel free to go into the `MovieListContainer` and set `loading` to false inside of the `this.setState`
+
+---
 
 ## Run Forest Run! Going The Extra Mile
 
-* React Router
-* Component Life Cycle
-* ReduxJS
-* 
+##### React Component Life Cycle
 
+* Lifecycle methods help us to control when specific code runs with regards to component
+* In our `MovieDetailsComponent` we used a lifecycle method to tell React when to run our Axios helper function
+* Check out the docs for more lifecycle methods and how to use them. 
+* [https://facebook.github.io/react/docs/react-component.html](https://facebook.github.io/react/docs/react-component.html)
 
+##### React Router
 
+* React Router is a routing library for React. 
+* It will help us to jump between multiple React components while syncing with the url
+* Check out the docs for more information on how to utilize this awesome library
+* [https://github.com/ReactTraining/react-router](https://github.com/ReactTraining/react-router)
 
+##### ReduxJS
+
+* ReactJS is great but things might start to get hectic if you have too many containers all with their own `state` 
+* That's where Redux saves the day. It is like the missing limb of React.
+* It allows us to put all our state into a `store.js` file that can be accessible by all components
+* Check out the docs for more info
+* [http://redux.js.org/](http://redux.js.org/)

@@ -25,7 +25,6 @@ const HomeContainer = React.createClass({
 		multiSearch(movieTitle)
 			.then((data) => {
 				
-				
 				this.setState({
 					search : true,
 					movieTitle : movieTitle,
@@ -35,7 +34,6 @@ const HomeContainer = React.createClass({
 			})
 	},
 	render(){
-		
 		return(
 			<HomeComponent 
 				data = {this.state}
