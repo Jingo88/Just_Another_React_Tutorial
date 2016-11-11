@@ -1,6 +1,5 @@
 import React from 'react';
 import MovieDetailsContainer from '../containers/MovieDetailsContainer';
-import Loading from './LoadingComponent';
 
 var styles = {
 	posterImage : {
@@ -54,11 +53,7 @@ function MovieUI(props){
 function MovieListComponent(props){
 	return (
 		<div className="row">
-			{props.loading === false ? 
-				<Loading/>
-				:
-
-				props.data.map(function(movie){
+			{props.data.map(function(movie){
 					return <MovieUI 
 								data={movie}/>
 				})

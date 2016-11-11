@@ -572,6 +572,8 @@ module.exports = MovieListComponent;
 * `Imperative vs Declarative programming!!!`
 	* We have to use props.data.map inside our MovieComponent return. We cannot use a for loop inside of the JSX. 
 
+## 06 Adding Details
+
 
 ## Run Forest Run! Going The Extra Mile
 
