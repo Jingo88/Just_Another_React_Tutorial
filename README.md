@@ -573,8 +573,6 @@ module.exports = MovieListComponent;
 	* We have to use props.data.map inside our MovieComponent return. We cannot use a for loop inside of the JSX. 
 
 
-
-
 ## Run Forest Run! Going The Extra Mile
 
 * React Router
