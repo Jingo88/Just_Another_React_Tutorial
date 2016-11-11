@@ -594,12 +594,39 @@ module.exports = MovieListComponent;
 * Notice that they aren't clickable and we don't have any detailed movie information
 * What about the Synopsis? Release Date? Rating? Directors? Actors and Actresses?
 * Now we're going to grab all that information using the other helper function `singleSearch`
+* * Inside the `MovieListComponent` the function `MovieUI` now calls a new object by the name of `MovieDetailsContainer` and passes "props.data" to it. 
+
+##### MovieDetailsContainer
+
+* Import the singleSearch helper function
+* This container will initialize its own state
+* Use a lifecycle method called `componentDidMount`
+	* This is a method built into react that says "Once this component is mounted run this code block"
+	* That code block being the invoking of `this.getSingleMovie` and passing in the props as the arguments
+	* We won't cover lifecycle methods in depth in this tutorial but there will be resources in the next steps section
+	
+***These next steps should sound familiar***
+
+* `getSingleMovie` will take the title and year as arguments and send it to the helper function
+* Axios hits the OMDB API and will return back that data in JSON format
+* That data is used to update the state of our `MovieDetailsContainer`
+	
+
+
+
+##### Container Vs. Component 
+
+* Wait we called a container `MovieDetailsContainer` from a component? 
+* 
+
+
 
 
 ## Run Forest Run! Going The Extra Mile
 
 * React Router
 * Component Life Cycle
+* ReduxJS
 * 
 
 

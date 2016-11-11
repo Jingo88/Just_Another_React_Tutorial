@@ -1,7 +1,7 @@
 import React from "react";
 import MovieDetailsComponent from "../components/MovieDetailsComponent";
 
-import { singleSearch, multiSearch} from '../helpers/helpers';
+import { singleSearch} from '../helpers/helpers';
 
 var styles = {
 	details: {
@@ -24,17 +24,14 @@ const MovieDetailsContainer = React.createClass({
 	componentDidMount(){
 		this.getSingleMovie(this.props.data.Title, this.props.data.Year)
 	},
-	componentWillReceiveProps(){
-		this.getSingleMovie(this.props.data.Title, this.props.data.Year)
-	},
 	getSingleMovie(title,year){
 		singleSearch(title, year)
-			.then(function(data){
+			.then((data) => {
 				this.setState({
 					loading: false,
 					movieInfo: data
 				})
-			}.bind(this))
+			})
 	},
 
 	render(){
