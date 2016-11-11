@@ -153,6 +153,8 @@ npm start
 * Now open up your browser and visit `localhost:8080`
 * This is our end goal. Or as far as this tutorial will take you. Hopefully you'll learn/understand the concepts in this tutorial enough to build your own apps and incorporate newer concepts. I'll suggest some later on.
 
+---
+
 ## 01 The Set Up
 
 * Lets run through our files and folders
@@ -206,6 +208,8 @@ render(
 * We'll stick with the first one
 * Our Containers will hold all the `state` and the `logic` for that piece of the Virtual DOM
 * Our Components will be logicless and stateless. Their only goal is to present the element to the page. You can put your styling here. 
+
+---
 
 ## 02 Separation of Concerns
 
@@ -277,6 +281,8 @@ render(
 * Each component is just a JavaScript object that we can import/export and drop any where we want in our site.
 * Utilizing components in this manner lets us keep them small and also makes them reusable
 
+---
+
 ## 03 State and Props
 
 * If we keep our logic in one place and the styling in another place how do the two talk to each other?
@@ -327,6 +333,8 @@ render(
 * To Change state use the `this.setState` function. We will see and example of this in the following branches
 * When creating and passing functions that will handle events best practice is to use `"handle"` when creating the event listener and `"on"` when passing it as a prop
 * `event.preventDefault()` is used to prevent the form from reloading
+
+---
 
 ## 04 Ajax and Axios
 
@@ -421,6 +429,8 @@ import {multiSearch} from '../helpers/helpers'
 * We're keeping the console logs for now to make sure we have the users input
 * We're setting the user input to a variable that will be passed into the `multiSearch` helper function
 * The data that is returned from `multiSearch` will be passed in as `data` inside of the `.then` promise.
+
+---
 
 ## 05 Render Movies
 
@@ -572,7 +582,15 @@ module.exports = MovieListComponent;
 * `Imperative vs Declarative programming!!!`
 	* We have to use props.data.map inside our MovieComponent return. We cannot use a for loop inside of the JSX. 
 
+---
 
+## 06 Adding Details
+
+* So far we built a new component that will render the array of movie objects
+* The movies are being rendered in that format because we are using `Materialize CSS` Cards
+* Notice that they aren't clickable and we aren't using any data other than the title and the movie image.
+* What about the Synopsis? Release Date? Rating? Directors? Actors and Actresses?
+* Now we're going to grab all that information using the other helper fucking we built for `singleMovieSearch`
 
 
 ## Run Forest Run! Going The Extra Mile
