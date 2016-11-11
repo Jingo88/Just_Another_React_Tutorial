@@ -586,11 +586,14 @@ module.exports = MovieListComponent;
 
 ## 06 Adding Details
 
-* So far we built a new component that will render the array of movie objects
-* The movies are being rendered in that format because we are using `Materialize CSS` Cards
-* Notice that they aren't clickable and we aren't using any data other than the title and the movie image.
+##### MovieListComponent
+
+* So far we built a new component called `MovieListComponent`
+* The goal of this component was to render a template showing all the movies on the page.
+* This component uses classes from the `Materialize CSS` framework to format the movies into cards
+* Notice that they aren't clickable and we don't have any detailed movie information
 * What about the Synopsis? Release Date? Rating? Directors? Actors and Actresses?
-* Now we're going to grab all that information using the other helper fucking we built for `singleMovieSearch`
+* Now we're going to grab all that information using the other helper function `singleSearch`
 
 
 ## Run Forest Run! Going The Extra Mile
