@@ -1,12 +1,9 @@
 # Just Another React Tutorial
 
-## What is React?
+## How to use this tutorial
 
-* React is a JavaScript Library created by Facebook
-* Write organized code
-* Write code quickly
-* Utilizes components
-* Virtual DOM efficiency
+* Read the what is react readme
+* This tutorial is in ES6. Check out the readme for understanding of the ES6 syntax
 
 ---
 
@@ -16,120 +13,6 @@
 * We'll be using the OMDB API
 * Clone this repo onto your computer
 * Then grab all the dependencies using:
-
----
-
-## Other Companion Technologies
-
-* OMDB API - I picked this because it is a free api that does not require a key. However, IMDB does not allow people to take their images so keep that in mind if you are trying to utilize OMDB for hosting an actual movie app
-* Webpack - We use this to bundle our modules. When you run `npm start` you are actually starting the "webpack-dev-server" which will take care of everything for us. If you were to build your own full stack application you will need to build a `webpack.config.js` file and hook it up to your server. 
-* ES6 - The newest version of JavaScript. Also known as `es2015`
-* JSX - A preprocessor that allows us to write XML syntax inside of our JavaScript files. Since we are using a Virtual DOM JSX makes it look as close to writing HTML as possible.
-* Axios - A promise based http client. Make XMLHttpRequests
-* Babel - Transform our ES6 and JSX to JavaScript
-* Node - A runtime environment for JavaScript. 
-	* From [https://nodejs.org/en/](https://nodejs.org/en/)
-
-```
-Node.js is a JavaScript runtime built on Chrome's V8 JavaScript engine. 
-Node.js uses an event-driven, non-blocking I/O model that makes it lightweight and efficient. 
-Node.js' package ecosystem, npm, is the largest ecosystem of open source libraries in the world.
-```
-* npm - the package manager for node modules
-
-## ES6 / ES2015 Syntax
-
-***This section will briefly cover some of the es6 syntax in case you are not familiar with it***
-
-##### Destructuring
-
-* Destructuring - seperating an object into variables for ease
-* Below is an example of something that may go in a render function
-
-```
-<MovieListComponent 
-	data={props.data.moviesFound} 
-	loading={props.data.loading}/>
-```
-* Instead of repeating `props.data` we can use the syntax in the following example
-
-```
-const {moviesFound, loading} = props.data;
-
-<MovieListComponent 
-	data={moviesFound} 
-	loading={loading}/>
-```
-
-##### var / let / const
-
-* `let` and `const` are similar to `var` in that they both can be used to declare variables.
-* `let` declarations will not be `hoisted` to the function level scope. Rather it will only be hoisted in the block level scope
-* `const` is used to declare an immutable object
-
-##### Imports
-
-```
-var React = require('react');
-```
-* Same as
-
-```
-import React from 'react';
-```
-
-##### Arrow Functions
-
-* The big difference between the ES5 function and an ES6 arrow function is it's ability to bind `this` automatically
-* In the `HomeContainer` you will see the AJAX call take the data and call `this.setState`
-
-```
-multiSearch(movieTitle)
-	.then((data) => {
-				
-	this.setState({
-		search : true,
-		movieTitle : movieTitle,
-		moviesFound : data,
-		loading: true
-	})
-})
-```
-* In ES5 we would of had to `bind(this)` to make sure the `this.setState` would be targeting the entire component
-
-```
-multiSearch(movieTitle)
-	.then(function(data){
-				
-	this.setState({
-		search : true,
-		movieTitle : movieTitle,
-		moviesFound : data,
-		loading: true
-	})
-}.bind(this))
-```
-
-##### Declaring Functions
-
-* When you look inside the containers and see functions such as those below
-
-```
-getInitialState(){}
-
-handleUserSubmit(){}
-
-render(){}
-```
-* These are the ES6 equivalent to
-
-```
-function getInitialState(){}
-
-function handleUserSubmit(){}
-
-function render(){}
-```
 
 ---
 
@@ -152,6 +35,8 @@ npm start
 * We only have to type `npm start` because in our `package.json` file, the start keyword is hooked up to running the `webpack-dev-server`
 * Now open up your browser and visit `localhost:8080`
 * This is our end goal. Or as far as this tutorial will take you. Hopefully you'll learn/understand the concepts in this tutorial enough to build your own apps and incorporate newer concepts. I'll suggest some later on.
+
+---
 
 ## 01 The Set Up
 
@@ -206,6 +91,8 @@ render(
 * We'll stick with the first one
 * Our Containers will hold all the `state` and the `logic` for that piece of the Virtual DOM
 * Our Components will be logicless and stateless. Their only goal is to present the element to the page. You can put your styling here. 
+
+---
 
 ## 02 Separation of Concerns
 
@@ -277,6 +164,8 @@ render(
 * Each component is just a JavaScript object that we can import/export and drop any where we want in our site.
 * Utilizing components in this manner lets us keep them small and also makes them reusable
 
+---
+
 ## 03 State and Props
 
 * If we keep our logic in one place and the styling in another place how do the two talk to each other?
@@ -327,6 +216,8 @@ render(
 * To Change state use the `this.setState` function. We will see and example of this in the following branches
 * When creating and passing functions that will handle events best practice is to use `"handle"` when creating the event listener and `"on"` when passing it as a prop
 * `event.preventDefault()` is used to prevent the form from reloading
+
+---
 
 ## 04 Ajax and Axios
 
@@ -421,6 +312,8 @@ import {multiSearch} from '../helpers/helpers'
 * We're keeping the console logs for now to make sure we have the users input
 * We're setting the user input to a variable that will be passed into the `multiSearch` helper function
 * The data that is returned from `multiSearch` will be passed in as `data` inside of the `.then` promise.
+
+---
 
 ## 05 Render Movies
 
@@ -572,15 +465,104 @@ module.exports = MovieListComponent;
 * `Imperative vs Declarative programming!!!`
 	* We have to use props.data.map inside our MovieComponent return. We cannot use a for loop inside of the JSX. 
 
+---
+
 ## 06 Adding Details
 
+##### MovieListComponent
+
+* So far we built a new component called `MovieListComponent`
+* The goal of this component was to render a template showing all the movies on the page.
+* This component uses classes from the `Materialize CSS` framework to format the movies into cards
+* Notice that they aren't clickable and we don't have any detailed movie information
+* What about the Synopsis? Release Date? Rating? Directors? Actors and Actresses?
+* Now we're going to grab all that information using the other helper function `singleSearch`
+* * Inside the `MovieListComponent` the function `MovieUI` now calls a new object by the name of `MovieDetailsContainer` and passes "props.data" to it. 
+
+##### MovieDetailsContainer
+
+* Import the singleSearch helper function
+* This container will initialize its own state
+* Use a lifecycle method called `componentDidMount`
+	* This is a method built into react that says "Once this component is mounted run this code block"
+	* That code block being the invoking of `this.getSingleMovie` and passing in the props as the arguments
+	* We won't cover lifecycle methods in depth in this tutorial but there are many articles/documentation on how to use them
+	
+***These next steps should sound familiar***
+
+* `getSingleMovie` will take the title and year as arguments and send it to the helper function
+* Axios hits the OMDB API and will return back that data in JSON format
+* That data is used to update the state of our `MovieDetailsContainer`
+* Now that the state has been updated we can send that data as `props` to a `MovieDetailsComponent`
+
+##### MovieDetailsComponent
+
+* Uses a ternary operator to assess if `props.loading` is true. 
+* If it is true render some loading images from `Materialize CSS`
+* If it is false take the data from `movieInfo` and populate them on the page. 
+
+
+##### Container Vs. Component 
+
+* Wait we called a container `MovieDetailsContainer` from a component `MovieListComponent`? 
+* Yes we did. Remember all of these are just JavaScript Objects
+* The reason I made details into another container/component instead of putting it all in one file is the seperation of the axios logic and the presentation of listing out all the data returned
+
+---
+
+
+## 00 Back To Master!!!
+
+* CONGRATS!!!
+* You got through all 6 branches. 
+* You may notice there is an extra component file in the master branch that is not in branch 6
+* I made a `LoadingComponent` to show as an example of something small and reusable
+* It can be imported and dropped anywhere throughout the app
+* We can use it as a default loading screen where ever the user might have to wait for data. 
+* In the example of the master branch I imported the `LoadingComponent` into the `MovieListComponent` 
+* Check out the ternary operator in the return function there
+
+```
+function MovieListComponent(props){
+	return (
+		<div className="row">
+			{props.loading === false ? 
+				<Loading/>
+				:
+
+				props.data.map(function(movie){
+					return <MovieUI 
+								data={movie}/>
+				})
+			}
+		</div>
+	)
+}
+```
+* If the movies are rendering too fast and you want to see the loading sign in action feel free to go into the `MovieListContainer` and set `loading` to false inside of the `this.setState`
+
+---
 
 ## Run Forest Run! Going The Extra Mile
 
-* React Router
-* Component Life Cycle
-* 
+##### React Component Life Cycle
 
+* Lifecycle methods help us to control when specific code runs with regards to component
+* In our `MovieDetailsComponent` we used a lifecycle method to tell React when to run our Axios helper function
+* Check out the docs for more lifecycle methods and how to use them. 
+* [https://facebook.github.io/react/docs/react-component.html](https://facebook.github.io/react/docs/react-component.html)
 
+##### React Router
 
+* React Router is a routing library for React. 
+* It will help us to jump between multiple React components while syncing with the url
+* Check out the docs for more information on how to utilize this awesome library
+* [https://github.com/ReactTraining/react-router](https://github.com/ReactTraining/react-router)
 
+##### ReduxJS
+
+* ReactJS is great but things might start to get hectic if you have too many containers all with their own `state` 
+* That's where Redux saves the day. It is like the missing limb of React.
+* It allows us to put all our state into a `store.js` file that can be accessible by all components
+* Check out the docs for more info
+* [http://redux.js.org/](http://redux.js.org/)
