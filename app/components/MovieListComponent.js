@@ -50,7 +50,7 @@ function MovieUI(props){
 function MovieListComponent(props){
 	return (
 		<div className="row">
-			{props.data.map(function(movie){
+			{props.data.map((movie)=>{
 				return <MovieUI 
 								data={movie}/>
 			})}

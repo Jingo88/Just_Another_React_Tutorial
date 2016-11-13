@@ -15,23 +15,8 @@ const HomeContainer = React.createClass({
 	handleUserSubmit(event){
 		event.preventDefault();
 
-		console.log(event.target)
-		console.log($(event.target).find("input:text").val())
-
 		let movieTitle = $(event.target).find("input:text").val();
-		// multiSearch(movieTitle)
-		// 	.then(function(data){
-		// 		console.log(data)
-				
-		// 		this.setState({
-		// 			search : true,
-		// 			movieTitle : movieTitle,
-		// 			moviesFound : data
-		// 		})
-		// 	}.bind(this))
 
-
-// ES6 Arrow function binds the this object from the outer scope to where we are calling setState
 		multiSearch(movieTitle)
 			.then((data) => {
 				

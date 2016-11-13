@@ -27,10 +27,12 @@ function HomeComponent(props){
 		    </form>
 		  </div>
 		  
-		  {props.data.search === true ? 
+		  {
+		  	props.data.search === true ? 
 		  	<MovieListComponent data = {props.data.moviesFound}/> 
 		  	: 
-		  	<h1> Waiting to see some shit</h1>}
+		  	<h4>Let us help you find what are you looking for?</h4>
+		  }
 		</div>
 	)
 }
