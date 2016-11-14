@@ -1,32 +1,38 @@
 # Just Another React Tutorial
 
-## How to use this tutorial
+---
 
-* Read the what is react readme
-* This tutorial is in ES6. Check out the readme for understanding of the ES6 syntax
+## How To Approach This Tutorial
+
+* Check out the [What Is React Markdown](https://github.com/Jingo88/Just_Another_React_Tutorial/blob/master/What_Is_React.md) for an introduction to the library
+* This tutorial will cover strictly react concepts but there is another markdown that summarizes the other technologies in this app. 
+	* Please review the [Companion Technologies Markdown](https://github.com/Jingo88/Just_Another_React_Tutorial/blob/master/Companion_Technologies.md)
+* This tutorial is also written in `ES6`/`ES2015`. If you're not familiar with the differences in syntax please review the [ES6 Syntax Markdown](https://github.com/Jingo88/Just_Another_React_Tutorial/blob/master/ES6_Syntax.md)
 
 ---
 
 ## What We're Building
 
-* In this tutorial we'll be building a web app that will search for movies
-* We'll be using the OMDB API
-* Clone this repo onto your computer
-* Then grab all the dependencies using:
+* In this tutorial we'll be building a web app that will search for movies using the OMDB API. 
+* The user will search for a movie by a title
+* All movies that relate to that title will be returned in JSON format
+* If a user clicks on a specific movie they will be shown the details of that movie
 
 ---
 
 # Building The App Branch By Branch
 
-## 00 The Master Branch
+## 00 The Master Branch / Cloning EVERYTHING!!!
 
 * Clone this repo
+* Go into the directory and run the following in your terminal
 
 ```
 npm install
 ```
+
 * This command is a node command that will download all the node modules listed in the `package.json` file
-* If you don't have npm then... you should probably download yourself npm
+* If you don't have npm then... you should probably download npm
 * Now let's run the server
 
 ```
@@ -78,7 +84,7 @@ render(
 
 * `const` - an ES6 syntax that we are using to declare an object instead of using `var`. Const also tells us that this object is `immutable`
 * `render(){}` - ES6 syntax. This just means `function render(){}`
-* `<HomeComponent/>` - JSX syntax inside of the `return / render` of Container
+* `<HomeComponent/>` - `JSX syntax` inside of the `return / render` of Container
 * All const/containers must have a render function with a return statement, returning an object that represents the virtual DOM
 * The last render is coming from the `react-dom` node module and we are passing it all of our objects to render to our element with an id of `app`
 
@@ -89,8 +95,8 @@ render(
 	* `Smart and Dumb Components`
 	* `Containers vs Stateless Presentational Components`
 * We'll stick with the first one
-* Our Containers will hold all the `state` and the `logic` for that piece of the Virtual DOM
-* Our Components will be logicless and stateless. Their only goal is to present the element to the page. You can put your styling here. 
+* Our Containers will be JavaScript objects that hold all the `state` and the `logic` for that piece of the Virtual DOM
+* Our Components will be logicless and stateless. Their only goal is to present the element to the page. You can apply your styling in each component file. We'll do that in the following branches
 
 ---
 
@@ -98,7 +104,7 @@ render(
 
 * Now in this branch we're going to separate everything out. 
 * We learned about Containers and Components but now we're going to give them their own folders. 
-* In a larger app you might even have sub directories inside of these folders
+	* In a larger app you might even have sub directories inside of these folders
 * Since these are all new files we'll have to export and import them into each other
 * Here's an example of importing and exporting in our `HomeContainer` file
 
@@ -143,7 +149,10 @@ module.exports = HomeComponent;
 ```
 * We are exporting our `Stateless Presentational Component` so the HomeContainer can use it
 * ***REMEMBER*** this is a component that will NOT HOLD any state or logic. Hence the name `Stateless Presentational Component`
-* `index.js` Now Our Index.js File looks like this!!!
+	* `className` - JSX way of identifying a class
+	* `var styles` - we created styling for this component that will be applied inside the return
+	* The classes applied to these elements are class names from `Materialize CSS`
+* `index.js` Now our Index.js File looks like this!!!
 
 ```
 import React from 'react';
@@ -180,8 +189,8 @@ render(
 	* This is a built in React function that must ALWAYS return a Object
 	* This object is immutable
 		* If `search` was a key in your state you cannot change it in the following manner `this.search = blah`
-		* we'll cover how to change these later
-	* You can pass this whole object or just specific parts to the component
+		* we'll cover how to change the state object in following branches
+	* You can pass this whole object or just specific parts to the component being called in `render()`
 * `handleUserSubmit()` 
 	* This is our own function built to handle an event
 	* This event listener will be passed down to the component
@@ -213,8 +222,9 @@ render(
 
 * Props - This represents the data/functions that can be sent to a component. The component can use this data to populate it's JSX Virtual DOM Elements or add event listeners to the Virtual DOM Elements
 * State - An immutable object of information that represents the data for that container and what is available to be passed down to the sub components
-* To Change state use the `this.setState` function. We will see and example of this in the following branches
+* To change state use the `this.setState` function. We will see and example of this in the following branches
 * When creating and passing functions that will handle events best practice is to use `"handle"` when creating the event listener and `"on"` when passing it as a prop
+	* This helps us, and other programmers to understand where the event listener is being created. 
 * `event.preventDefault()` is used to prevent the form from reloading
 
 ---
@@ -224,8 +234,8 @@ render(
 ##### Recap for Event Listeners
 
 * Alright so this app isn't going to just stop at console logging
-* We can grab the user input with our `handleUserSubmit` function and passing it down as a prop called `OnUserSubmit` to our Home Component.
-* Now we have to make calls to the OMDB API
+* We can grab the user input with our `handleUserSubmit` function and pass it down as a prop called `OnUserSubmit` to our Home Component.
+* Now we're going to start sending requests to the OMDB API
 
 ##### MOAR ORGANIZATION!!! (Set Up AJAX Calls)
 
@@ -282,6 +292,7 @@ module.exports = {
 * The data that comes back will be in json format
 * We will return that data to the container it is called. 
 * At the bottom of the file we export all our helper fuctions.
+	* `NOTE:` we continue to break up our code to be small and reusable. Now if this were a larger app we could drop these different helper functions anywhere we want for use
 
 ##### HandleUserSubmit Calling Helper Functions
 
@@ -477,7 +488,7 @@ module.exports = MovieListComponent;
 * Notice that they aren't clickable and we don't have any detailed movie information
 * What about the Synopsis? Release Date? Rating? Directors? Actors and Actresses?
 * Now we're going to grab all that information using the other helper function `singleSearch`
-* * Inside the `MovieListComponent` the function `MovieUI` now calls a new object by the name of `MovieDetailsContainer` and passes "props.data" to it. 
+* Inside the `MovieListComponent` the function `MovieUI` now calls a new object by the name of `MovieDetailsContainer` and passes "props.data" to it. 
 
 ##### MovieDetailsContainer
 
