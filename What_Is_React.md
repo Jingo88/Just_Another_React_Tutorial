@@ -1,4 +1,4 @@
-# What is React? 
+# What is React? NATE FINGER IS REACT!
 
 * React is a JavaScript View Library created by Facebook
 * It allows us to write code quickly and in an organized manner
