@@ -41,4 +41,4 @@ function HomeComponent(props){
 	)
 }
 
-module.exports = HomeComponent;
+export default HomeComponent;

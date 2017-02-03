@@ -16,6 +16,7 @@
 * In this tutorial we'll be building a web app that will search for movies using the OMDB API. 
 * The user will search for a movie by a title
 * All movies that relate to that title will be returned in JSON format
+* The list of movies will be rendered on the page using React
 * If a user clicks on a specific movie they will be shown the details of that movie
 
 ---
@@ -24,14 +25,15 @@
 
 ## 00 The Master Branch / Cloning EVERYTHING!!!
 
+* Let's start by seeing what the final product will look like.
 * Clone this repo
-* Go into the directory and run the following in your terminal
+* Change directory into the project and run the following command in your terminal
 
 ```
 npm install
 ```
 
-* This command is a node command that will download all the node modules listed in the `package.json` file
+* This command is a node command that will download all the node modules listed in the `package.json` file 
 * If you don't have npm then... you should probably download npm
 * Now let's run the server
 
@@ -46,10 +48,16 @@ npm start
 
 ## 01 The Set Up
 
-* Lets run through our files and folders
-* `package.json` - again this is used to tell people your dependencies for this app. We used it to install the correct node modules
+* Now we're going to start from scratch. 
+* Go ahead and delete the `containers` `components` and `helpers` directories and the `index.js` file in the `app` directory.
+	* You can always refer back to the Github tutorial.
+	* If you don't feel comfortable with deleting it then you can copy the whole project into another directory, or just create a new branch for yourself to practice. 
+
+##### The rest of our files	
+
+* `package.json` - This file is used to list the dependencies of the application. We used it to install the correct node modules
 * `app/.babelrc` - To use babel to transform our items we have to pass in "react" and "es2015"
-* `index.html` - has some cdns for jquery, materialize. Also has only a single element with an id of `app`. We're going to target this in our JS file
+* `index.html` - has some cdns for jQuery, Materialize CSS. Also has only a single element with an id of `app`. We're going to target this in our JS file
 
 ##### `index.js` - The Important Stuff!
 
@@ -65,6 +73,28 @@ function HomeComponent(props){
 		</div>
 	)
 }
+
+class HomeContainer extends React.Component{
+	render(){
+		return(
+			<HomeComponent/>
+		)
+		
+	}
+}
+
+render(
+	<HomeContainer/>,
+	document.getElementById('app')
+)
+```
+* the imports are ES6 syntax. We are grabbing what we want from the node modules we installed earlier
+
+***NOTES***
+
+* Some tutorials may have their containers written with the syntax below 
+
+```
 const HomeContainer = React.createClass({
 	render(){
 		return(
@@ -73,12 +103,19 @@ const HomeContainer = React.createClass({
 		
 	}
 })
-render(
-	<HomeContainer/>,
-	document.getElementById('app')
-)
 ```
-* the imports are ES6 syntax. We are grabbing what we want from the node modules we installed earlier
+* With the updates to the React Library it is recommended to create your containers by extending the React.Component
+
+```
+class HomeContainer extends React.Component{
+	render(){
+		return(
+			<HomeComponent/>
+		)
+		
+	}
+}
+```
 
 ##### Rest of the code
 
@@ -112,13 +149,13 @@ render(
 import React from 'react';
 import HomeComponent from '../components/HomeComponent';
 
-const HomeContainer = React.createClass({
+class HomeContainer extends React.Component{
 	render(){
 		return(
 			<HomeComponent/>
 		)
 	}
-})
+}
 
 export default HomeContainer;
 ```
@@ -145,7 +182,8 @@ function HomeComponent(props){
 		</div>
 	)
 }
-module.exports = HomeComponent;
+
+export default HomeComponent;
 ```
 * We are exporting our `Stateless Presentational Component` so the HomeContainer can use it
 * ***REMEMBER*** this is a component that will NOT HOLD any state or logic. Hence the name `Stateless Presentational Component`
@@ -160,7 +198,6 @@ import {render} from 'react-dom';
 
 import HomeContainer from './containers/HomeContainer';
 
-
 render(
 	<HomeContainer/>,
 	document.getElementById('app')
@@ -172,6 +209,8 @@ render(
 * Now you can start seeing the organizational piece of React.
 * Each component is just a JavaScript object that we can import/export and drop any where we want in our site.
 * Utilizing components in this manner lets us keep them small and also makes them reusable
+* `export default` - is ES6 syntax that will allow us to export the one main function of the file. 
+	* This is how we are allowed to import the `HomeComponent` inside of the `HomeContainer` file
 
 ---
 
@@ -461,7 +500,7 @@ function MovieListComponent(props){
 	)
 }
 
-module.exports = MovieListComponent;
+export default MovieListComponent;
 ```	
 
 ##### MOAR ON this.setState | ES6 Arrow Functions | Misc.

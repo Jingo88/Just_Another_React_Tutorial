@@ -14,18 +14,20 @@ var styles = {
 	}
 }
 
-const MovieDetailsContainer = React.createClass({
-	getInitialState(){
-		return{
+class MovieDetailsContainer extends React.Component{
+	constructor(){
+		super();
+		this.state = {
 			loading: true,
 			movieInfo: {}
 		}
-	},
+		this.getSingleMovie = this.getSingleMovie.bind(this)
+	}
 	componentDidMount(){
 		const {Title, Year} = this.props.data;
 
 		this.getSingleMovie(Title, Year);
-	},
+	}
 	getSingleMovie(title,year){
 		singleSearch(title, year)
 			.then((data) => {
@@ -34,16 +36,17 @@ const MovieDetailsContainer = React.createClass({
 					movieInfo: data
 				})
 			})
-	},
-
+	}
 	render(){
+		const {loading, movieInfo} = this.state;
+
 		return (
 			<MovieDetailsComponent
 				movie={this.props.data}
-				loading = {this.state.loading}
-				movieInfo = {this.state.movieInfo}/>
+				loading = {loading}
+				movieInfo = {movieInfo}/>
 		)
 	}
-})
+}
 
 export default MovieDetailsContainer;

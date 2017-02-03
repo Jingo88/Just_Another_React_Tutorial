@@ -50,4 +50,4 @@ function LoadingComponent(props){
 	)
 }
 
-module.exports = LoadingComponent;
+export default LoadingComponent;

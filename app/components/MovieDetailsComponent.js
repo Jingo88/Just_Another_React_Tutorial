@@ -57,4 +57,4 @@ function MovieDetailsComponent(props){
 		)
 }
 
-module.exports = MovieDetailsComponent
+export default MovieDetailsComponent;

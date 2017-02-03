@@ -3,15 +3,17 @@ import HomeComponent from '../components/HomeComponent';
 
 import {multiSearch} from '../helpers/helpers'
 
-const HomeContainer = React.createClass({
-	getInitialState(){
-		return {
+class HomeContainer extends React.Component{
+  constructor(){
+    super();
+    this.state = {
 			loading: false,
 			search: false,
 			movieTitle: "",
 			moviesFound: []
 		}
-	},
+		this.handleUserSubmit = this.handleUserSubmit.bind(this)
+  }
 	handleUserSubmit(event){
 		event.preventDefault();
 
@@ -32,7 +34,7 @@ const HomeContainer = React.createClass({
 					loading: true
 				})
 			})
-	},
+	}
 	render(){
 		return(
 			<HomeComponent 
@@ -40,6 +42,6 @@ const HomeContainer = React.createClass({
 				onUserSubmit = {this.handleUserSubmit}/>
 		)
 	}
-})
+}
 
 export default HomeContainer;

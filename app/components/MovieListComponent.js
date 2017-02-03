@@ -66,4 +66,4 @@ function MovieListComponent(props){
 	)
 }
 
-module.exports = MovieListComponent;
+export default MovieListComponent;
