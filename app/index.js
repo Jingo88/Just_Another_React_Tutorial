@@ -1,10 +1,10 @@
 import React from 'react';
 import {render} from 'react-dom';
 
-import HomeContainer from './containers/HomeContainer'
+import routes from './routes/routes'
 
 render(
-	<HomeContainer/>,
+	routes,
 	document.getElementById('app')
 )
 
