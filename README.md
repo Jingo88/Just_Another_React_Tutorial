@@ -560,6 +560,18 @@ export default MovieListComponent;
 
 ---
 
+## 07 New Branch for React Router
+
+* This is still getting flushed out. Will Update shortly
+* React Router
+* BrowserHistory vs Hash History
+* Making a Main Container
+* This.props.children in the main container
+* Make a new List Container
+* Import details container to list container
+* Make a new search container
+
+---
 
 ## 00 Back To Master!!!
 
