@@ -1,7 +1,7 @@
 import React from "react";
 import MovieDetailsComponent from "../components/MovieDetailsComponent";
 
-import {singleSearch} from '../helpers/helpers';
+import {singleSearch, multiSearch} from '../helpers/helpers';
 
 var styles = {
 	details: {
@@ -21,7 +21,7 @@ class MovieDetailsContainer extends React.Component{
 			loading: true,
 			movieInfo: {}
 		}
-		this.getSingleMovie = this.getSingleMovie.bind(this)
+		this.getSingleMovie = this.getSingleMovie.bind(this);
 	}
 	componentDidMount(){
 		const {Title, Year} = this.props.data;

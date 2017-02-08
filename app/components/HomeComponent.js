@@ -29,14 +29,8 @@ function HomeComponent(props){
 		    </form>
 		  </div>
 
-		  {
-		  	search === true ? 
-		  	<MovieListComponent 
-		  		data={moviesFound} 
-		  		loading={loading}/> 
-		  	: 
-		  	<h4>Let us help you find what are you looking for?</h4>
-		  }
+		  <h4>Let us help you find what are you looking for?</h4>
+		  
 		</div>
 	)
 }

@@ -1,15 +1,15 @@
 import React from 'react';
-import {Router, Route, IndexRoute, hashHistory} from 'react-router';
+import {Router, Route, IndexRoute, hashHistory, browserHistory} from 'react-router';
 
 import Main from '../containers/Main';
 import HomeContainer from '../containers/HomeContainer';
-import MovieDetailsContainer from '../containers/MovieDetailsContainer';
+import MovieListContainer from '../containers/MovieListContainer';
 
 const routes = (
-	<Router history={hashHistory}>
+	<Router history={browserHistory}>
 		<Route path='/' component={Main}>
 			<IndexRoute component={HomeContainer}/>
-			<Route path="/details" component={MovieDetailsContainer}/>
+			<Route path='/details/:title' component={MovieListContainer}/>
 		</Route>
 	</Router>
 )

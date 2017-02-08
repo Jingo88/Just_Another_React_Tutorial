@@ -1,7 +1,9 @@
 import React from 'react';
 import HomeComponent from '../components/HomeComponent';
+import {browserHistory, router} from 'react-router';
 
-import {multiSearch} from '../helpers/helpers'
+import {multiSearch} from '../helpers/helpers';
+
 
 class HomeContainer extends React.Component{
   constructor(){
@@ -18,22 +20,11 @@ class HomeContainer extends React.Component{
 		event.preventDefault();
 
 		let movieTitle = $(event.target).find("input:text").val();
+		console.log(this)
+		console.log(this.context)
 
-		this.setState({
-			loading: false
-		})
-
-// ES6 Arrow function binds the this object from the outer scope to where we are calling setState
-		multiSearch(movieTitle)
-			.then((data) => {
-				
-				this.setState({
-					search : true,
-					movieTitle : movieTitle,
-					moviesFound : data,
-					loading: true
-				})
-			})
+		browserHistory.push('/details/' + movieTitle)
+		
 	}
 	render(){
 		return(

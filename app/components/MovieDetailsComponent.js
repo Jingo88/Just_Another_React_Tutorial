@@ -34,7 +34,8 @@ function MovieDetailsComponent(props){
   			<i className="material-icons right">close</i>
   			</span>
 			</div>
-		: <div className="card-reveal" style={styles.details}>
+		: 
+			<div className="card-reveal" style={styles.details}>
   			<span className="card-title" style={styles.mTitle}>  			
   				{movieInfo.Title}
   			<i className="material-icons right">close</i>

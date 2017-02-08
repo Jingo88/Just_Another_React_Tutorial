@@ -1,6 +1,8 @@
 import React from 'react';
+
 import MovieDetailsContainer from '../containers/MovieDetailsContainer';
-import Loading from './LoadingComponent';
+
+import { singleSearch, multiSearch} from '../helpers/helpers'; 
 
 var styles = {
 	posterImage : {
@@ -18,6 +20,7 @@ var styles = {
 }
 
 function MoviePoster(props){
+	console.log(props)
 	return props.data === "N/A"
 		? <img style={styles.posterImage} className="activator" src="http://www.nyctransitforums.com/forums/fcontent/default.png" />
 		: <img style={styles.posterImage} className="activator" src={props.data} />
@@ -43,27 +46,31 @@ function MovieUI(props){
 					<a href="#">Add to favorites</a>
 					<a href="#">Share</a>
 				</div>
-				
+
 				<MovieDetailsContainer data={props.data} />
+				
 			</div>
 		</div>
 	)
 }
 
-function MovieListComponent(props){
+function EachMovie(props){
 	return (
 		<div className="row">
-			{props.loading === false ? 
-				<Loading/>
-				:
-
-				props.data.map(function(movie){
-					return <MovieUI 
+			{props.data.map(function(movie){
+				return <MovieUI 
 								data={movie}/>
-				})
-			}
+			})}
 		</div>
 	)
 }
 
-export default MovieListComponent;
+function MovieList(props){
+	return props.loading === true
+		? <h1>LOADING!!!</h1>
+		: <div className = "container">
+				<EachMovie data = {props.moviesInfo}/>
+			</div>
+}
+
+module.exports = MovieList;
