@@ -1,5 +1,7 @@
 import React from 'react';
 
+import LoadingComponent from './LoadingComponent';
+
 var styles = {
 	details: {
 		color: "#ED6A5A"
@@ -12,28 +14,12 @@ var styles = {
 }
 
 function MovieDetailsComponent(props){
-
+	console.log(props);
+	
 	let movieInfo = props.movieInfo.data
 
 	return (props.loading === true
-		? <div className="card-reveal">
-  			<span className="card-title center">
-	  			<div className="preloader-wrapper big active">
-			      <div className="spinner-layer spinner-red">
-			        <div className="circle-clipper left">
-			          <div className="circle"></div>
-			        </div>
-			        <div className="gap-patch">
-			          <div className="circle"></div>
-			        </div>
-			        <div className="circle-clipper right">
-			          <div className="circle"></div>
-		        	</div>
-		      	</div>
-		      </div>
-  			<i className="material-icons right">close</i>
-  			</span>
-			</div>
+		? <LoadingComponent/>
 		: <div className="card-reveal" style={styles.details}>
   			<span className="card-title" style={styles.mTitle}>  			
   				{movieInfo.Title}
