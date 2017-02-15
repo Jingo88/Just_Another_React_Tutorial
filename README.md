@@ -594,39 +594,31 @@ function MovieListComponent(props){
 
 ## Run Forest Run! Going The Extra Mile
 
-##### React Component Life Cycle
+#### Take Take This Tutorial a Step Further
+
+* You can find an extension of this tutorial in my new repo here. [https://github.com/Jingo88/Just_Another_React_Tutorial_Extended](https://github.com/Jingo88/Just_Another_React_Tutorial_Extended)
+* In this repo I will go about refactoring this projects code to include the React Router. 
+
+#### React Component Life Cycle
 
 * Lifecycle methods help us to control when specific code runs with regards to component
 * In our `MovieDetailsComponent` we used a lifecycle method to tell React when to run our Axios helper function
 * Check out the docs for more lifecycle methods and how to use them. 
 * [https://facebook.github.io/react/docs/react-component.html](https://facebook.github.io/react/docs/react-component.html)
 
-##### React Router
+#### React Router
 
 * React Router is a routing library for React. 
 * It will help us to jump between multiple React components while syncing with the url
 * Check out the docs for more information on how to utilize this awesome library
 * [https://github.com/ReactTraining/react-router](https://github.com/ReactTraining/react-router)
 
-##### ReduxJS
+#### ReduxJS
 
 * ReactJS is great but things might start to get hectic if you have too many containers all with their own `state` 
 * That's where Redux saves the day. It is like the missing limb of React.
 * It allows us to put all our state into a `store.js` file that can be accessible by all components
 * Check out the docs for more info
 * [http://redux.js.org/](http://redux.js.org/)
-
----
-
-## 07 New Branch for React Router
-
-* This is still getting flushed out. Will Update shortly
-* React Router
-* BrowserHistory vs Hash History
-* Making a Main Container
-* This.props.children in the main container
-* Make a new List Container
-* Import details container to list container
-* Make a new search container
 
 ---
