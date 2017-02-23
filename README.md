@@ -18,6 +18,8 @@
 * All movies that relate to that title will be returned in JSON format
 * The list of movies will be rendered on the page using React
 * If a user clicks on a specific movie they will be shown the details of that movie
+* There is an extension to this tutorial that will focus on expanding this app to include the react-router. 
+	* You can find this tutorial here [https://github.com/Jingo88/Just_Another_React_Tutorial_Extended](https://github.com/Jingo88/Just_Another_React_Tutorial_Extended)
 
 ---
 
