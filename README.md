@@ -374,7 +374,7 @@ import {multiSearch} from '../helpers/helpers'
 		let movieTitle = $(event.target).find("input:text").val();
 
 		multiSearch(movieTitle)
-			.then(function(data){
+			.then((data) => {
 				console.log(data)
 			})
 	}
@@ -530,13 +530,15 @@ export default MovieListComponent;
 
 * `this.setState` runs asynchronously
 * `this.setState` will automatically re-render the component, passing the new state down as props
-* Please make sure you check out the ES6 section in this markdown to understand how the arrow function is taking care of the `bind(this)` that is normally needed.
+* Please make sure you check out the ES6 section in this markdown to understand how the arrow function works and why we no longer need to write `bind(this)` at the end of our function
 * Why bother with a Movie Component? Can't we just stick those functions inside the same file as our Home Component?
 	* Yes it would definitely work the same if we put everything in the Home Component
 	* BUT REMEMBER, the purpose of breaking these up is to `keep our files small, our code organized, and our components reusable`
 	* If a component is getting too big think about how to break it up into smaller files. 
 * `Imperative vs Declarative programming!!!`
 	* We have to use props.data.map inside our MovieComponent return. We cannot use a for loop inside of the JSX. 
+
+***Time to get more movie details in step 06_adding_details***
 
 ---
 
