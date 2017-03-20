@@ -2,10 +2,10 @@
 
 ---
 
-## How To Approach This Tutorial
+## Before Beginning This Tutorial
 
 * Check out the [What Is React Markdown](https://github.com/Jingo88/Just_Another_React_Tutorial/blob/master/What_Is_React.md) for an introduction to the library
-* This tutorial will cover strictly react concepts but there is another markdown that summarizes the other technologies in this app. 
+* This tutorial will strictly cover React.js concepts but there is another markdown that summarizes the other technologies in this app. 
 	* Please review the [Companion Technologies Markdown](https://github.com/Jingo88/Just_Another_React_Tutorial/blob/master/Companion_Technologies.md)
 * This tutorial is also written in `ES6`/`ES2015`. If you're not familiar with the differences in syntax please review the [ES6 Syntax Markdown](https://github.com/Jingo88/Just_Another_React_Tutorial/blob/master/ES6_Syntax.md)
 
@@ -14,10 +14,10 @@
 ## What We're Building
 
 * In this tutorial we'll be building a web app that will search for movies using the OMDB API. 
-* The user will search for a movie by a title
-* All movies that relate to that title will be returned in JSON format
-* The list of movies will be rendered on the page using React
-* If a user clicks on a specific movie they will be shown the details of that movie
+* The user will search for a movie by a title.
+* All movies that relate to that title will be returned in JSON format.
+* The list of movies will be rendered on the page using React. 
+* If a user clicks on a specific movie they will be shown the details of that movie.
 * There is an extension to this tutorial that will focus on expanding this app to include the react-router. 
 	* You can find this tutorial here [https://github.com/Jingo88/Just_Another_React_Tutorial_Extended](https://github.com/Jingo88/Just_Another_React_Tutorial_Extended)
 
@@ -29,7 +29,7 @@
 
 * Let's start by seeing what the final product will look like.
 * Clone this repo
-* Change directory into the project and run the following command in your terminal
+* Change directory into the project `Just_Another_React_Tutorial` and run the following command in your terminal
 
 ```
 npm install
@@ -51,9 +51,10 @@ npm start
 ## 01 The Set Up
 
 * Now we're going to start from scratch. 
+* Let's make a new Git Branch
+	* `git checkout -b your_branch_name`
 * Go ahead and delete the `containers` `components` and `helpers` directories and the `index.js` file in the `app` directory.
-	* You can always refer back to the Github tutorial.
-	* If you don't feel comfortable with deleting it then you can copy the whole project into another directory, or just create a new branch for yourself to practice. 
+	* You can always refer back to the Github tutorial, or checkout to the master branch 
 
 ##### The rest of our files	
 
@@ -90,7 +91,7 @@ render(
 	document.getElementById('app')
 )
 ```
-* the imports are ES6 syntax. We are grabbing what we want from the node modules we installed earlier
+* the imports are ES6 syntax. We are grabbing what we want from the node modules we installed earlier (remember when we ran that `npm install` command?)
 
 ***NOTES***
 
@@ -125,7 +126,9 @@ class HomeContainer extends React.Component{
 * `render(){}` - ES6 syntax. This just means `function render(){}`
 * `<HomeComponent/>` - `JSX syntax` inside of the `return / render` of Container
 * All const/containers must have a render function with a return statement, returning an object that represents the virtual DOM
-* The last render is coming from the `react-dom` node module and we are passing it all of our objects to render to our element with an id of `app`
+* The last render is coming from the `react-dom` node module.
+	* The first argument is the main React component we want to be rendered
+	* The second argument is the location in the HTML file that will render it. In this example we target the `div` element with an id of `app`
 
 ##### Containers vs Components
 
@@ -137,11 +140,13 @@ class HomeContainer extends React.Component{
 * Our Containers will be JavaScript objects that hold all the `state` and the `logic` for that piece of the Virtual DOM
 * Our Components will be logicless and stateless. Their only goal is to present the element to the page. You can apply your styling in each component file. We'll do that in the following branches
 
+***Alright, time for the next step 02_separation_of_concerns***
+
 ---
 
 ## 02 Separation of Concerns
 
-* Now in this branch we're going to separate everything out. 
+* In this branch we're going to separate all of our code for organizational purposes. 
 * We learned about Containers and Components but now we're going to give them their own folders. 
 	* In a larger app you might even have sub directories inside of these folders
 * Since these are all new files we'll have to export and import them into each other
@@ -162,8 +167,9 @@ class HomeContainer extends React.Component{
 export default HomeContainer;
 ```
 * Import the HomeComponent for use
+	* `'../components/HomeComponent'` We can use relative pathing to grab what we want
 * Export the const object so the `index.js` file can use it
-* Below is how we export from our `HomeComponent`
+* Below is how we export our `HomeComponent`
 
 ```
 function HomeComponent(props){
@@ -190,7 +196,7 @@ export default HomeComponent;
 * We are exporting our `Stateless Presentational Component` so the HomeContainer can use it
 * ***REMEMBER*** this is a component that will NOT HOLD any state or logic. Hence the name `Stateless Presentational Component`
 	* `className` - JSX way of identifying a class
-	* `var styles` - we created styling for this component that will be applied inside the return
+	* `const styles` - we created styling for this component that will be applied inside the return
 	* The classes applied to these elements are class names from `Materialize CSS`
 * `index.js` Now our Index.js File looks like this!!!
 
@@ -211,8 +217,15 @@ render(
 * Now you can start seeing the organizational piece of React.
 * Each component is just a JavaScript object that we can import/export and drop any where we want in our site.
 * Utilizing components in this manner lets us keep them small and also makes them reusable
+	* Think about having to build only one `loading animation component` and being able to re-use that in multiple parts/pages on your site. 
 * `export default` - is ES6 syntax that will allow us to export the one main function of the file. 
 	* This is how we are allowed to import the `HomeComponent` inside of the `HomeContainer` file
+* ***STYLING***
+	* There are arguments for and against declaring `styles` as a JS object to add to your JSX. 
+	* It may look more organized because a React project can break up into many components.
+	* However, you will not get the full CSS functionality inside a JS file as you would a normal CSS/SASS file
+
+***Forward onto step 03_state_and_props***
 
 ---
 
@@ -226,17 +239,18 @@ render(
 
 * Inside our container we will use a built in function called `getInitialState`
 * `getInitialState()` 
-	* ES6 for `function getInitialState()`
+	* This is the ES6 way of writing `function getInitialState()`
 	* This is a built in React function that must ALWAYS return a Object
 	* This object is immutable
 		* If `search` was a key in your state you cannot change it in the following manner `this.search = blah`
 		* we'll cover how to change the state object in following branches
-	* You can pass this whole object or just specific parts to the component being called in `render()`
+	* You can pass this whole object or just specific parts to the component being called in components `render()` function
 * `handleUserSubmit()` 
 	* This is our own function built to handle an event
 	* This event listener will be passed down to the component
 * Now when we render our `HomeComponent` we'll use JSX syntax to pass in the props. 
-* Feel free to check out the console.log for "this.state"
+* Feel free to stick console logs inside of the components functions any time to make sure your data is correct
+	* check out the console.log for "this.state"
 
 ##### HomeComponent
 
@@ -245,7 +259,7 @@ render(
 ```
 	<h2>The name from our props is {props.name}</h2>
 ```
-* props.name was accessible because inside our HomeContainer we rendered the HomeComponent like this
+* props.name was accessible because inside our `HomeContainer` we rendered the `HomeComponent` like this
 
 ```
 	render(){
@@ -261,12 +275,15 @@ render(
 
 ##### TAKEAWAY: State vs Props | Handle vs On Labeling | Misc.
 
-* Props - This represents the data/functions that can be sent to a component. The component can use this data to populate it's JSX Virtual DOM Elements or add event listeners to the Virtual DOM Elements
-* State - An immutable object of information that represents the data for that container and what is available to be passed down to the sub components
+* `Props` - This represents the data/functions that can be sent to a component. The component can use this data to populate it's JSX Virtual DOM Elements or add event listeners to the Virtual DOM Elements
+* `State` - An immutable object of information that represents the data for that container and what is available to be passed down to the sub components
 * To change state use the `this.setState` function. We will see and example of this in the following branches
-* When creating and passing functions that will handle events best practice is to use `"handle"` when creating the event listener and `"on"` when passing it as a prop
+* When to use the word `handle`
+	* When creating events the best practice is to use `"handle"` when creating the event listener and `"on"` when passing it as a prop
 	* This helps us, and other programmers to understand where the event listener is being created. 
 * `event.preventDefault()` is used to prevent the form from reloading
+
+***Enough meat and potatoes, lets go to step 04_ajax_and_axios***
 
 ---
 
@@ -274,8 +291,8 @@ render(
 
 ##### Recap for Event Listeners
 
-* Alright so this app isn't going to just stop at console logging
-* We can grab the user input with our `handleUserSubmit` function and pass it down as a prop called `OnUserSubmit` to our Home Component.
+* Well we didn't come here to just log things in the console
+* We learn to grab the user input with our `handleUserSubmit` function and pass it down as a prop called `OnUserSubmit` to our `HomeComponent`.
 * Now we're going to start sending requests to the OMDB API
 
 ##### MOAR ORGANIZATION!!! (Set Up AJAX Calls)
@@ -328,9 +345,11 @@ module.exports = {
 ```
 
 * Import the Axios library
-* Set up our endpoints for the API
-* Build the function so that the proper endpoint will be combined with the users search inquiry
-* The data that comes back will be in json format
+* Set up our `endpoints` for the API
+	* `endpoints` are the addresses for the data we need to grab from OMDB
+* Build the function so that the proper url will be created. 
+	* For this well use string concatenation to combine the title, and year with the proper url
+* OMDB will send data back to us in JSON format
 * We will return that data to the container it is called. 
 * At the bottom of the file we export all our helper fuctions.
 	* `NOTE:` we continue to break up our code to be small and reusable. Now if this were a larger app we could drop these different helper functions anywhere we want for use
@@ -358,12 +377,14 @@ import {multiSearch} from '../helpers/helpers'
 			.then(function(data){
 				console.log(data)
 			})
-	},
+	}
 ```
 
 * We're keeping the console logs for now to make sure we have the users input
 * We're setting the user input to a variable that will be passed into the `multiSearch` helper function
 * The data that is returned from `multiSearch` will be passed in as `data` inside of the `.then` promise.
+
+***Find out how to use that data in the next step 05_render_movies***
 
 ---
 
